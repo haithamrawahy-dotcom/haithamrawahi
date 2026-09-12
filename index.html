@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Haitham Al Rawahi — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy: #141D28;
+    --panel: #1B2733;
+    --panel-hi: #223140;
+    --sand: #EDE6D6;
+    --stone: #8FA0AF;
+    --stone-dim: #5C6C7A;
+    --copper: #C97C3D;
+    --copper-hi: #E0965A;
+    --teal: #4E9187;
+    --gold: #C9A24E;
+    --slate-blue: #6E85A6;
+    --line: rgba(143,160,175,0.18);
+    --radius: 2px;
+    --disp: "Fraunces", serif;
+    --body: "IBM Plex Sans", sans-serif;
+    --mono: "IBM Plex Mono", monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--navy);
+    color: var(--sand);
+    font-family: var(--body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  ::selection { background: var(--copper); color: var(--navy); }
+
+  img, svg { max-width: 100%; display:block; }
+
+  .wrap{
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- Nav ---------- */
+  header.site-nav{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(20,29,40,0.86);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    padding: 18px 32px;
+    max-width: 1120px;
+    margin: 0 auto;
+  }
+  .nav-mark{
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    color: var(--copper-hi);
+    text-decoration: none;
+  }
+  .nav-links{
+    display:flex;
+    gap: 28px;
+    list-style:none;
+    margin:0; padding:0;
+  }
+  .nav-links a{
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--stone);
+    text-decoration:none;
+    transition: color 0.2s ease;
+  }
+  .nav-links a:hover, .nav-links a:focus-visible{ color: var(--sand); }
+  .nav-toggle{ display:none; }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding: 96px 0 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 48px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: 0.12em;
+    color: var(--stone);
+    text-transform: uppercase;
+    margin: 0 0 22px;
+  }
+  .eyebrow::before{ content:"◆ "; color: var(--copper); }
+  h1.hero-name{
+    font-family: var(--disp);
+    font-weight: 600;
+    font-size: clamp(42px, 6vw, 68px);
+    line-height: 1.02;
+    margin: 0 0 20px;
+    letter-spacing: -0.01em;
+  }
+  .hero-sub{
+    font-size: 18px;
+    color: var(--stone);
+    max-width: 46ch;
+    margin: 0 0 32px;
+  }
+  .hero-sub strong{ color: var(--sand); font-weight: 500; }
+  .hero-cta{
+    display:flex;
+    gap:16px;
+    flex-wrap: wrap;
+  }
+  .btn{
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    padding: 13px 22px;
+    text-decoration:none;
+    border-radius: var(--radius);
+    display:inline-block;
+    transition: all 0.2s ease;
+  }
+  .btn-primary{
+    background: var(--copper);
+    color: var(--navy);
+    font-weight: 500;
+  }
+  .btn-primary:hover, .btn-primary:focus-visible{ background: var(--copper-hi); }
+  .btn-ghost{
+    border: 1px solid var(--line);
+    color: var(--sand);
+  }
+  .btn-ghost:hover, .btn-ghost:focus-visible{ border-color: var(--stone); }
+
+  /* Compass signature */
+  .compass-wrap{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding: 20px;
+  }
+  .compass{
+    width: 100%;
+    max-width: 380px;
+    height: auto;
+  }
+  .compass-needle{
+    transform-origin: 200px 200px;
+    animation: settle 1.8s cubic-bezier(.2,.9,.25,1) 1;
+  }
+  @keyframes settle{
+    0% { transform: rotate(-140deg); opacity: 0; }
+    60% { opacity: 1; }
+    100% { transform: rotate(0deg); opacity: 1; }
+  }
+  .compass-label{
+    font-family: var(--mono);
+    font-size: 11px;
+    fill: var(--stone);
+    letter-spacing: 0.05em;
+  }
+  .compass-label.primary{
+    fill: var(--copper-hi);
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .compass-needle{ animation: none; }
+    html{ scroll-behavior: auto; }
+  }
+
+  /* ---------- Section shared ---------- */
+  section{ padding: 88px 0; border-top: 1px solid var(--line); }
+  .section-head{
+    display:flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 44px;
+  }
+  .section-num{
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--stone-dim);
+    letter-spacing: 0.08em;
+  }
+  h2.section-title{
+    font-family: var(--disp);
+    font-weight: 600;
+    font-size: clamp(28px, 3.4vw, 38px);
+    margin: 4px 0 0;
+  }
+  .section-note{
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--stone);
+    max-width: 32ch;
+    text-align: right;
+  }
+
+  /* ---------- About ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 56px;
+  }
+  .about-text p{ color: var(--stone); font-size: 16px; margin: 0 0 18px; }
+  .about-text p strong{ color: var(--sand); font-weight: 500; }
+
+  .log{
+    list-style:none;
+    margin:0; padding:0;
+    border-top: 1px solid var(--line);
+  }
+  .log li{
+    display:grid;
+    grid-template-columns: 90px 1fr;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 14.5px;
+  }
+  .log .tag{
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--copper-hi);
+    letter-spacing: 0.04em;
+  }
+  .log .val{ color: var(--stone); }
+  .log .val strong{ color: var(--sand); font-weight: 500; }
+
+  /* ---------- Fields ---------- */
+  .field-main{
+    background: linear-gradient(135deg, var(--panel-hi), var(--panel));
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--copper);
+    border-radius: var(--radius);
+    padding: 40px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .field-kicker{
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--copper-hi);
+    margin: 0 0 10px;
+  }
+  .field-main h3{
+    font-family: var(--disp);
+    font-size: 30px;
+    font-weight: 600;
+    margin: 0 0 14px;
+  }
+  .field-main p{ color: var(--stone); max-width: 62ch; margin: 0 0 20px; font-size: 15.5px; }
+  .field-list{ list-style:none; margin:0; padding:0; display:grid; gap: 10px; }
+  .field-list li{
+    font-size: 14.5px;
+    color: var(--sand);
+    padding-left: 18px;
+    position: relative;
+  }
+  .field-list li::before{
+    content: "—";
+    position: absolute; left:0; color: var(--copper);
+  }
+
+  .field-row{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .field-card{
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 26px;
+  }
+  .field-card .dot{
+    width: 8px; height: 8px; border-radius: 50%;
+    margin-bottom: 16px;
+  }
+  .field-card:nth-child(1) .dot{ background: var(--teal); }
+  .field-card:nth-child(2) .dot{ background: var(--gold); }
+  .field-card:nth-child(3) .dot{ background: var(--slate-blue); }
+  .field-card h4{
+    font-family: var(--disp);
+    font-size: 19px;
+    font-weight: 600;
+    margin: 0 0 10px;
+  }
+  .field-card p{ color: var(--stone); font-size: 14px; margin: 0 0 14px; }
+  .field-card ul{ margin:0; padding-left: 16px; color: var(--stone); font-size: 13.5px; }
+  .field-card li{ margin-bottom: 6px; }
+
+  /* ---------- Experience (voyage log) ---------- */
+  .voyage{ position: relative; padding-left: 28px; }
+  .voyage::before{
+    content:"";
+    position:absolute; left: 5px; top: 6px; bottom: 6px;
+    width: 1px;
+    background: var(--line);
+  }
+  .voyage-entry{ position: relative; padding-bottom: 42px; }
+  .voyage-entry:last-child{ padding-bottom: 0; }
+  .voyage-entry::before{
+    content:"";
+    position:absolute; left: -28px; top: 5px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--navy);
+    border: 2px solid var(--copper);
+  }
+  .voyage-bearing{
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--stone-dim);
+    letter-spacing: 0.05em;
+    margin: 0 0 6px;
+  }
+  .voyage-entry h4{
+    font-family: var(--disp);
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 4px;
+  }
+  .voyage-entry .org{ color: var(--copper-hi); font-size: 14px; margin: 0 0 10px; }
+  .voyage-entry p.desc{ color: var(--stone); font-size: 14.5px; max-width: 62ch; margin: 0; }
+
+  /* ---------- Projects ---------- */
+  .proj-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .proj-card{
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 32px;
+    display:flex; flex-direction:column;
+  }
+  .proj-index{
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--stone-dim);
+    margin-bottom: 14px;
+  }
+  .proj-card h3{
+    font-family: var(--disp);
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0 0 12px;
+  }
+  .proj-card p{ color: var(--stone); font-size: 14.5px; margin: 0 0 20px; flex-grow: 1; }
+  .chip-row{ display:flex; flex-wrap: wrap; gap: 8px; }
+  .chip{
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--stone);
+    border: 1px solid var(--line);
+    padding: 5px 10px;
+    border-radius: var(--radius);
+  }
+
+  /* ---------- Skills ---------- */
+  .skills-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px 40px;
+  }
+  .skill-group h4{
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--copper-hi);
+    margin: 0 0 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--line);
+  }
+  .skill-group ul{ list-style:none; margin:0; padding:0; }
+  .skill-group li{
+    font-size: 14.5px;
+    color: var(--sand);
+    padding: 6px 0;
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    padding: 64px 0 48px;
+    border-top: 1px solid var(--line);
+  }
+  .footer-grid{
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  footer h2{
+    font-family: var(--disp);
+    font-size: clamp(26px, 4vw, 40px);
+    font-weight: 600;
+    margin: 0 0 12px;
+  }
+  .contact-list{ list-style:none; margin:0; padding:0; }
+  .contact-list li{ margin-bottom: 8px; }
+  .contact-list a{
+    text-decoration:none;
+    color: var(--stone);
+    font-size: 15px;
+    transition: color 0.2s ease;
+  }
+  .contact-list a:hover, .contact-list a:focus-visible{ color: var(--copper-hi); }
+  .foot-note{
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--stone-dim);
+    margin-top: 40px;
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--copper-hi);
+    outline-offset: 2px;
+  }
+
+  /* ---------- Reveal on scroll ---------- */
+  .reveal{ opacity: 0; transform: translateY(14px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.in{ opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; transition:none; }
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 860px){
+    .hero-grid{ grid-template-columns: 1fr; }
+    .compass-wrap{ order: -1; padding-bottom: 0; }
+    .about-grid{ grid-template-columns: 1fr; }
+    .field-row{ grid-template-columns: 1fr; }
+    .proj-grid{ grid-template-columns: 1fr; }
+    .skills-grid{ grid-template-columns: 1fr 1fr; }
+    .nav-links{ display:none; }
+    .section-note{ text-align:left; }
+  }
+  @media (max-width: 520px){
+    .wrap{ padding: 0 20px; }
+    .nav-inner{ padding: 16px 20px; }
+    .skills-grid{ grid-template-columns: 1fr; }
+    .log li{ grid-template-columns: 70px 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-mark">H. AL RAWAHI</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#fields">Fields</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" style="border-top:none; padding-top:64px;">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Muscat, Oman</p>
+        <h1 class="hero-name">Haitham<br>Al&nbsp;Rawahi</h1>
+        <p class="hero-sub">
+          I lead teams first, and build with <strong>AI</strong> second — an Entrepreneurship Club president
+          and AI graduate who ended up just as interested in <strong>predictive quality data</strong>
+          and <strong>enterprise systems</strong> as in computer vision.
+        </p>
+        <div class="hero-cta">
+          <a href="#fields" class="btn btn-primary">See the four fields</a>
+          <a href="mailto:Haithamrawahy@gmail.com" class="btn btn-ghost">Get in touch</a>
+        </div>
+      </div>
+      <div class="compass-wrap">
+        <svg class="compass" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Compass diagram: True North is Entrepreneurship and Leadership; the other three bearings are AI and Computer Vision, Data Analytics, and Enterprise Systems.">
+          <circle cx="200" cy="200" r="176" fill="none" stroke="#8FA0AF" stroke-opacity="0.25" stroke-width="1"/>
+          <circle cx="200" cy="200" r="120" fill="none" stroke="#8FA0AF" stroke-opacity="0.18" stroke-width="1"/>
+          <!-- tick marks -->
+          <g stroke="#8FA0AF" stroke-opacity="0.3">
+            <line x1="200" y1="24" x2="200" y2="40"/>
+            <line x1="200" y1="360" x2="200" y2="376"/>
+            <line x1="24" y1="200" x2="40" y2="200"/>
+            <line x1="360" y1="200" x2="376" y2="200"/>
+          </g>
+          <!-- Labels -->
+          <text x="200" y="60" text-anchor="middle" class="compass-label primary">ENTREPRENEURSHIP</text>
+          <text x="200" y="76" text-anchor="middle" class="compass-label primary">&amp; LEADERSHIP</text>
+          <text x="336" y="204" text-anchor="start" class="compass-label">AI &amp;</text>
+          <text x="336" y="218" text-anchor="start" class="compass-label">COMPUTER VISION</text>
+          <text x="200" y="332" text-anchor="middle" class="compass-label">DATA ANALYTICS</text>
+          <text x="64" y="204" text-anchor="end" class="compass-label">ENTERPRISE</text>
+          <text x="64" y="218" text-anchor="end" class="compass-label">SYSTEMS</text>
+          <!-- needle -->
+          <g class="compass-needle">
+            <path d="M200 200 L200 96 L212 140 Z" fill="#C97C3D"/>
+            <path d="M200 200 L200 304 L188 260 Z" fill="#4E6373"/>
+            <path d="M200 200 L296 200 L252 188 Z" fill="#3C4C5A"/>
+            <path d="M200 200 L104 200 L148 212 Z" fill="#3C4C5A"/>
+            <circle cx="200" cy="200" r="7" fill="#EDE6D6"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="section-num">01 — About</p>
+          <h2 class="section-title">Two tracks, one direction</h2>
+        </div>
+        <p class="section-note">Leadership work runs alongside the technical work — neither is a side project.</p>
+      </div>
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p>
+            I'm an <strong>Artificial Intelligence</strong> graduate of the German University of Technology
+            in Oman (GUtech), having completed a bachelor's thesis on AI-driven exam integrity. But the work I've
+            put the most sustained time into is running the <strong>GUtech Entrepreneurship Club</strong> — two and
+            a half years of organizing events, founding a startup showcase, and managing a team, alongside the technical coursework.
+          </p>
+          <p>
+            In between, I picked up two more threads: a summer inside an <strong>enterprise finance system</strong>
+            at Port of Duqm, and a research trip to Germany studying how <strong>data predicts quality</strong> on a
+            factory floor. This site is where all four meet.
+          </p>
+        </div>
+        <ul class="log reveal">
+          <li><span class="tag">EDU</span><span class="val">B.Sc. Artificial Intelligence, <strong>GUtech</strong>, 2022–2026 · cGPA 3.6</span></li>
+          <li><span class="tag">ROLE</span><span class="val"><strong>President</strong>, GUtech Entrepreneurship Club</span></li>
+          <li><span class="tag">2025</span><span class="val">DAAD fellow, <strong>RWTH Aachen</strong>, Germany</span></li>
+          <li><span class="tag">LANG</span><span class="val">Arabic (native) · English (fluent) · German (basic)</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIELDS -->
+  <section id="fields">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="section-num">02 — Fields</p>
+          <h2 class="section-title">Where I spend my time</h2>
+        </div>
+        <p class="section-note">True north, then three supporting bearings.</p>
+      </div>
+
+      <div class="field-main reveal">
+        <p class="field-kicker">True North</p>
+        <h3>Entrepreneurship &amp; Leadership</h3>
+        <p>
+          As President of the GUtech Entrepreneurship Club (Feb 2024 – June 2026), I've run the club's biggest
+          annual events and started a new one from scratch — the part of my week that's least about a screen and
+          most about people.
+        </p>
+        <ul class="field-list">
+          <li>Founded and led <strong>Grient</strong>, a startup showcase event at GUtech, from concept to launch</li>
+          <li>Organized <strong>GU Souq</strong>, Charity Day, and National Day celebrations university-wide</li>
+          <li>Managed a club team across recruitment, planning, and event execution for over two years</li>
+        </ul>
+      </div>
+
+      <div class="field-row">
+        <div class="field-card reveal">
+          <div class="dot"></div>
+          <h4>AI &amp; Computer Vision</h4>
+          <p>My bachelor thesis and the technical core of my degree.</p>
+          <ul>
+            <li>Face recognition &amp; anti-spoofing (FaceNet, MediaPipe)</li>
+            <li>Real-time exam cheating detection (YOLOv8)</li>
+            <li>Parking-space detection via image recognition</li>
+          </ul>
+        </div>
+        <div class="field-card reveal">
+          <div class="dot"></div>
+          <h4>Data Analytics</h4>
+          <p>Where AI meets manufacturing, not just cameras.</p>
+          <ul>
+            <li>DAAD project on predictive quality in turning operations</li>
+            <li>Analyzed industrial machine data at RWTH Aachen</li>
+            <li>Presented findings to an academic committee</li>
+          </ul>
+        </div>
+        <div class="field-card reveal">
+          <div class="dot"></div>
+          <h4>Enterprise Systems</h4>
+          <p>The business side of applying AI inside a real company.</p>
+          <ul>
+            <li>IT &amp; Finance intern, Port of Duqm Company SAOC</li>
+            <li>Worked hands-on with the IFS ERP system</li>
+            <li>Proposed AI-driven improvements to finance workflows</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="section-num">03 — Experience</p>
+          <h2 class="section-title">Log</h2>
+        </div>
+        <p class="section-note">In order, most recent first.</p>
+      </div>
+      <div class="voyage">
+        <div class="voyage-entry reveal">
+          <p class="voyage-bearing">FEB 2026 — JUN 2026</p>
+          <h4>Bachelor Thesis</h4>
+          <p class="org">GUtech</p>
+          <p class="desc">Built and shipped an AI-based smart attendance system with anti-spoofing and cheating
+            detection — four development versions, a Streamlit dashboard with four role-based views, and
+            real fixes for spoofing bypass and duplicate logging along the way.</p>
+        </div>
+        <div class="voyage-entry reveal">
+          <p class="voyage-bearing">NOV 2025</p>
+          <h4>DAAD Specialty Course</h4>
+          <p class="org">RWTH Aachen University, Germany</p>
+          <p class="desc">Selected for an international, DAAD-funded course on data-driven manufacturing;
+            completed a consulting-style project predicting product quality from industrial machine data.</p>
+        </div>
+        <div class="voyage-entry reveal">
+          <p class="voyage-bearing">JUL 2025 — SEP 2025</p>
+          <h4>IT &amp; Finance Intern</h4>
+          <p class="org">Port of Duqm Company SAOC</p>
+          <p class="desc">Cross-functional work across IT and Finance using the IFS ERP system — data entry,
+            system maintenance, and process optimization, plus proposals for AI-driven finance improvements.</p>
+        </div>
+        <div class="voyage-entry reveal">
+          <p class="voyage-bearing">FEB 2024 — JUN 2026</p>
+          <h4>President, Entrepreneurship Club</h4>
+          <p class="org">GUtech</p>
+          <p class="desc">Led the club through GU Souq, Charity Day, and National Day events, and founded the
+            Grient startup event from the ground up.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="section-num">04 — Projects</p>
+          <h2 class="section-title">Selected work</h2>
+        </div>
+        <p class="section-note">The two builds that carry the most technical weight.</p>
+      </div>
+      <div class="proj-grid">
+        <div class="proj-card reveal">
+          <p class="proj-index">01</p>
+          <h3>Smart Attendance System</h3>
+          <p>A unified Python pipeline combining face recognition, liveness verification, head-pose tracking,
+            and phone detection to catch exam cheating in real time — with a four-role Streamlit dashboard
+            for admins, student affairs, invigilators, and professors.</p>
+          <div class="chip-row">
+            <span class="chip">FaceNet</span>
+            <span class="chip">MediaPipe</span>
+            <span class="chip">YOLOv8</span>
+            <span class="chip">Streamlit</span>
+          </div>
+        </div>
+        <div class="proj-card reveal">
+          <p class="proj-index">02</p>
+          <h3>Parking Lot Detection System</h3>
+          <p>A computer-vision model that identifies and locates available parking spaces from image data,
+            aimed at improving parking efficiency in dense urban areas.</p>
+          <div class="chip-row">
+            <span class="chip">Computer Vision</span>
+            <span class="chip">Image Recognition</span>
+            <span class="chip">Python</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="section-num">05 — Skills</p>
+          <h2 class="section-title">Toolkit</h2>
+        </div>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-group reveal">
+          <h4>AI &amp; Machine Learning</h4>
+          <ul>
+            <li>Computer Vision</li>
+            <li>Face Recognition</li>
+            <li>Object Detection (YOLOv8)</li>
+            <li>MediaPipe · FaceNet</li>
+          </ul>
+        </div>
+        <div class="skill-group reveal">
+          <h4>Programming</h4>
+          <ul>
+            <li>Python</li>
+            <li>Streamlit</li>
+          </ul>
+        </div>
+        <div class="skill-group reveal">
+          <h4>Enterprise Systems</h4>
+          <ul>
+            <li>IFS ERP</li>
+          </ul>
+        </div>
+        <div class="skill-group reveal">
+          <h4>Leadership</h4>
+          <ul>
+            <li>Team management</li>
+            <li>Event leadership</li>
+            <li>Marketing</li>
+            <li>Decision-making</li>
+          </ul>
+        </div>
+        <div class="skill-group reveal">
+          <h4>Certifications</h4>
+          <ul>
+            <li>IELTS — Overall 6</li>
+            <li>IGCSE Certificate</li>
+          </ul>
+        </div>
+        <div class="skill-group reveal">
+          <h4>Languages</h4>
+          <ul>
+            <li>Arabic — Native</li>
+            <li>English — Fluent</li>
+            <li>German — Basic</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <footer id="contact">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <h2>Let's talk.</h2>
+        </div>
+        <ul class="contact-list">
+          <li><a href="mailto:Haithamrawahy@gmail.com">Haithamrawahy@gmail.com</a></li>
+          <li><a href="tel:+96895191881">+968 9519 1881</a></li>
+          <li><a href="https://www.linkedin.com/in/haithamrawahi" target="_blank" rel="noopener">LinkedIn — Haitham Al Rawahi</a></li>
+        </ul>
+      </div>
+      <p class="foot-note">Muscat, Oman</p>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('in'));
+  }
+</script>
+
+</body>
+</html>
